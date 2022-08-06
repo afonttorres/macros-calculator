@@ -2,13 +2,19 @@ export default class ClientForm {
     age;
     weight;
     height;
-    fields = ['age', 'weight', 'height'];
+    gender;
+    activity;
+    fields = ['age', 'weight', 'height', 'gender', 'activity'];
+    optionals = {
+        activity: [1.2, 1.375, 1.55, 1.9],
+        gender: ['female', 'male']
+    }
 
     constructor() { }
 
-    catchData = (e) => {
+    catchData = (e, callback) => {
         e.preventDefault();
-        const inputs = document.querySelectorAll('input');
+        const inputs = document.querySelectorAll('.input');
         let validation = this.validate(inputs);
         if (!validation) return;
         inputs.forEach(i => {
@@ -21,10 +27,17 @@ export default class ClientForm {
                     break;
                 case 'height':
                     this.height = i.value;
+                    break;
+                case 'gender':
+                    this.gender = i.value;
+                    break;
+                case 'activity':
+                    this.activity = i.value;
             }
         })
         this.saveData();
         this.resetInputs();
+        callback();
     }
 
     validate = (inputs) => {
@@ -42,9 +55,11 @@ export default class ClientForm {
         let client = {
             age: this.age,
             weight: this.weight,
-            height: this.height
+            height: this.height,
+            gender: this.gender,
+            activity: this.activity
         }
-        
+
         localStorage.setItem('client', JSON.stringify(client))
     }
 
