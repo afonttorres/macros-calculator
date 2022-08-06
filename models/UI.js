@@ -75,16 +75,13 @@ export default class UI {
 
     renderClientForm = () => {
         this.printCont('macros calculator', 'row');
-        this.printForm(this.clientForm.fields, this.clientForm.optionals, (e) => this.clientForm.catchData(e, this.calcBasicData));
-    }
-
-    calcBasicData = () => {
-        this.basicCalc = new BasicCalc(this.clientForm.age, this.clientForm.weight, this.clientForm.height, this.clientForm.gender, this.clientForm.activity);
-        this.basicCalc.calcBasicData();
-        this.renderBasicData();
+        this.printForm(this.clientForm.fields, this.clientForm.optionals, (e) => this.clientForm.catchData(e, this.renderBasicData));
     }
 
     renderBasicData = () => {
+        this.basicCalc = new BasicCalc(this.clientForm.age, this.clientForm.weight, this.clientForm.height, this.clientForm.gender, this.clientForm.activity);
+        this.basicCalc.calcBasicData();
+        
         const basicData = {
             TMB: this.basicCalc.TMB,
             energy: this.basicCalc.energy,
