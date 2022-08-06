@@ -1,18 +1,19 @@
 export default class UI {
+    container = document.querySelector('.container');
     constructor() { }
 
     slideBg = () => {
 
     }
 
-    printCont = () => {
-        const container = document.createElement('div');
-        container.classList = 'container col';
+    printCont = (titleText, flex) => {
+        this.container.classList = `container col`;
         const title = document.createElement('p');
-        title.innerText = 'MACROS CALCULATOR';
-        title.classList='title font';
-        container.appendChild(title);
-        document.body.appendChild(container);
+        title.innerText = titleText;
+        title.classList = 'title font';
+        const itemsCont = document.createElement('div');
+        itemsCont.classList = `items-cont ${flex}`;
+        this.container.append(title, itemsCont);
     }
 
     createFormControl = (field) => {
@@ -25,7 +26,6 @@ export default class UI {
     }
 
     printForm = (fields, callback) => {
-        const container = document.querySelector('.container');
         const form = document.createElement('form');
         form.className = 'col';
         form.innerHTML = fields.map(field => this.createFormControl(field));
@@ -34,7 +34,7 @@ export default class UI {
         button.classList = 'font';
         button.onclick = (e) => callback(e);
         form.insertAdjacentElement('beforeEnd', button);
-        container.appendChild(form);
+        document.querySelector('.items-cont').append(form);
     }
 
 }
