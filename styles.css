@@ -44,8 +44,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 40%);
 }
 
-.app::after {
-    content: "";
+.bg {
     filter: blur(3px);
     top: 7.5%;
     left: 7.5%;
@@ -86,8 +85,8 @@ body {
 
 
 ::placeholder {
-    text-transform: capitalize;
-    color: indianred;
+    color: rgba(205, 92, 92, 60%);
+    font-style: italic;
     padding-left: 3px;
     font-size: medium;
 }
@@ -124,9 +123,12 @@ body {
     outline: none;
     box-shadow: 0px 1px 3px black;
     box-shadow: 0px 0px 3px indianred;
-    text-transform: capitalize;
     cursor: pointer;
     font-size: medium;
+}
+
+select{
+    text-transform: capitalize;
 }
 
 .form-control select option {
@@ -163,7 +165,7 @@ button {
     top: 10%;
     box-shadow: 0px 0px 100px black;
     font-weight: 800;
-    font-size: medium;
+    font-size: small;
     padding: 18px 32px;
 }
 

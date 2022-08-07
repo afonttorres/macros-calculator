@@ -4,7 +4,7 @@ export default class ClientForm {
     height;
     gender;
     activity;
-    fields = ['age', 'weight', 'height', 'gender', 'activity'];
+    fields = [{ 'age': '18' }, { 'weight': '55 (in kg)' }, { 'height': '160 (in cm)' }, 'gender', 'activity'];
     optionals = {
         activity: [{ 'sedentary': 1.2 }, { 'light': 1.375 }, { 'moderate': 1.55 }, { 'very active': 1.9 }],
         gender: [{ 'female': 'f' }, { 'male': 'm' }]
