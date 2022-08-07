@@ -179,9 +179,11 @@ button:hover {
 }
 
 .data-output {
-    line-height: 4vh;
     width: 200px;
     text-transform: none;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .data-label {

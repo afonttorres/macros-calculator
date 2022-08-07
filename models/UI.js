@@ -171,7 +171,7 @@ export default class UI {
     }
 
     renderEquivalences = () => {
-        console.log('not implemented yet')
+        console.error('Not implemented yet');
     }
 
 }

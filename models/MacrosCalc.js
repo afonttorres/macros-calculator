@@ -113,7 +113,6 @@ export default class MacrosCalc {
     }
 
     calcKetoIndex = () => {
-        console.log('hi')
         this.ketoI = +(((0, 9 * this.fat) + (0, 46 * this.protein)) / (this.ch + (0, 58 * this.protein) + (0, 1 * this.fat))).toFixed(2);
     }
 
