@@ -24,6 +24,9 @@ export default class UI {
     printCont = (titleText, flex) => {
 
         this.container.classList = `container col`;
+        this.container.setAttribute('style', `height :${window.innerHeight * .85}px` );
+        document.querySelector('.bg').setAttribute('style', `height :${window.innerHeight * .85}px` );
+
         let html = `
             <p class="title font">${titleText}</p>
             <div class="items-cont ${flex}"></div>

@@ -197,9 +197,10 @@ button:hover {
 }
 
 .reset-btn{
-    padding: 5%;
+    padding: 18px;
     position: fixed;
     top: 90%;
     right: 5%;
     font-size: medium;
+    z-index: 3;
 }
