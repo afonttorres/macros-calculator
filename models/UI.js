@@ -32,7 +32,7 @@ export default class UI {
 
     createInput = (field, n) => {
         return (
-            `<div style="height: calc(100% / ${n * 1.5})" class="form-control col">
+            `<div style="height: calc(100% / ${n * 1.25})" class="form-control col">
                 <label class="font" for="${Object.keys(field)}">${Object.keys(field)}</label>
                 <input class="input font" type="number" name="${Object.keys(field)}" placeholder="${field[Object.keys(field)]}">
             </div>`
@@ -42,7 +42,7 @@ export default class UI {
     createSelect = (field, optionals, n) => {
         return (
 
-            `<div style="height: calc(100% / ${n * 1.5})" class="form-control col">
+            `<div style="height: calc(100% / ${n * 1.25})" class="form-control col">
                 <label class="font" for="${field}">${field}</label>
                 <select class="input font" name="${field}" placeholder="${field}">
                 ${optionals.map(r => {
