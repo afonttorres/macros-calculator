@@ -25,6 +25,7 @@ export default class Equivalences {
             "fat equivalences": +parseInt(this.fat / this.fatEq)
         }
         this.setEquivalencesForPrint();
+        this.saveEquivalences();
     }
 
     setEquivalencesForPrint = () => {
@@ -42,6 +43,10 @@ export default class Equivalences {
                     break;
             }
         })
+    }
+
+    saveEquivalences = () => {
+        localStorage.setItem('equivalences', JSON.stringify(this.printableEq));
     }
 
 

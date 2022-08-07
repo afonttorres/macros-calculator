@@ -24,8 +24,8 @@ body {
 }
 
 .app {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-position: inherit;
     background-size: cover;
     background-image: url(https://images.unsplash.com/photo-1477554193778-9562c28588c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
@@ -46,10 +46,6 @@ body {
 
 .bg {
     filter: blur(3px);
-    top: 7.5%;
-    left: 7.5%;
-    right: 7.5%;
-    bottom: 7.5%;
     background-color: rgba(0, 0, 0, .4);
     background-color: rgba(255, 255, 255, 50%);
     display: block;

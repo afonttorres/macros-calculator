@@ -180,10 +180,10 @@ export default class UI {
 
         let equivalences;
 
-        if (this.getData('equivalences')) {
-            equivalences = this.getData('equivalences');
-            return;
-        }
+        // if (this.getData('equivalences')) {
+        //     equivalences = this.getData('equivalences');
+        //     return;
+        // }
 
         this.equivalencesCalc = new Equivalences(protein, CH, fat);
         this.equivalencesCalc.calcEquivalences();
