@@ -121,7 +121,7 @@ export default class MacrosCalc {
         this.macrosComp = {
             protein: this.protein,
             fat: this.fat,
-            ch: this.ch,
+            CH: this.ch,
             "keto index": this.ketoI
         }
     }
@@ -129,7 +129,7 @@ export default class MacrosCalc {
     setKcalComputation = () => {
         this.kcalComp = {
             protein: this.protein * this.protE,
-            ch: this.ch * this.chE,
+            CH: this.ch * this.chE,
             fat: this.fat * this.fatE,
             total: parseInt(this.protein * this.protE + this.ch * this.chE + this.fat * this.fatE)
         }

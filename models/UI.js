@@ -1,6 +1,7 @@
 import { util } from "../util.js";
 import BasicCalc from "./BasicCalc.js";
 import ClientForm from "./ClientForm.js";
+import Equivalences from "./EquivalencesCalc.js";
 import MacrosCalc from "./MacrosCalc.js";
 
 export default class UI {
@@ -8,6 +9,7 @@ export default class UI {
     clientForm;
     basicCalc;
     macrosCalc;
+    equivalencesCalc;
 
     container = document.querySelector('.container');
     constructor() {
@@ -105,10 +107,6 @@ export default class UI {
 
     }
 
-    checkLocalStorage = () => {
-        return JSON.parse(localStorage.getItem('basic-data'));
-    }
-
     createBasicDataDisplay = (data, callbacks) => {
         this.container.innerHTML = '';
         this.printCont('your data', 'col');
@@ -121,8 +119,8 @@ export default class UI {
             macros_button: { action: () => this.renderMacrosForm(), content: 'set macros', class: 'white-btn' }
         }
 
-        if (this.checkLocalStorage()) {
-            this.createBasicDataDisplay(this.checkLocalStorage(), buttonCallbacks);
+        if (util.checkLocalStorage('basic-data')) {
+            this.createBasicDataDisplay(util.checkLocalStorage('basic-data'), buttonCallbacks);
             return;
         }
 
@@ -142,7 +140,7 @@ export default class UI {
     renderMacrosForm = () => {
         this.container.innerHTML = '';
         this.printCont('plan your macros', 'col');
-        let energy = this.basicCalc ? this.basicCalc.energy : this.checkLocalStorage().energy;
+        let energy = this.basicCalc ? this.basicCalc.energy : util.checkLocalStorage('basic-data').energy;
         let client;
         this.clientForm.age ?
             client = {
@@ -170,7 +168,39 @@ export default class UI {
         this.printData(util.addUnitsToObj(this.macrosCalc.kcalComp, 'kcal'), buttonCallbacks);
     }
 
+    getData = (item) => {
+        if (util.checkLocalStorage(item)) {
+            return util.checkLocalStorage(item);
+        }
+        return false;
+    }
+
     renderEquivalences = () => {
+        let { protein, CH, fat } = this.getData('macros') ? this.getData('macros') : this.macrosCalc.macrosComp;
+
+        let equivalences;
+
+        if (this.getData('equivalences')) {
+            equivalences = this.getData('equivalences');
+            return;
+        }
+
+        this.equivalencesCalc = new Equivalences(protein, CH, fat);
+        this.equivalencesCalc.calcEquivalences();
+        equivalences = this.equivalencesCalc.printableEq;
+
+        let buttonCallbacks = {
+            back_button: { action: () => this.renderMacrosData(), content: 'back' },
+            intakes_button: { action: () => this.renderIntakesFrom(), content: 'set intakes', class: 'white-btn' }
+        }
+
+        this.container.innerHTML = '';
+        this.printCont('your equivalences', 'col');
+        this.printData(util.addUnitsToObj(equivalences, ''), buttonCallbacks)
+
+    }
+
+    renderIntakesFrom = () => {
         console.error('Not implemented yet');
     }
 
