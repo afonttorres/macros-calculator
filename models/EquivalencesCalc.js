@@ -1,3 +1,5 @@
+import { util } from "../utils/util.js";
+
 export default class Equivalences {
 
     protein;
@@ -20,9 +22,9 @@ export default class Equivalences {
 
     calcEquivalences = () => {
         this.equivalences = {
-            "protein equivalences": +parseInt(this.protein / this.protEq),
-            "CH equivalences": +parseInt(this.ch / this.chEq),
-            "fat equivalences": +parseInt(this.fat / this.fatEq)
+            "protein equivalences": util.toInt(this.protein / this.protEq),
+            "CH equivalences": util.toInt(this.ch / this.chEq),
+            "fat equivalences": util.toInt(this.fat / this.fatEq)
         }
         this.setEquivalencesForPrint();
         this.saveEquivalences();

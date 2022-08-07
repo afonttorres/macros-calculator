@@ -1,3 +1,5 @@
+import { util } from "../utils/util.js";
+
 export default class BasicCalc {
     age;
     weight;
@@ -19,20 +21,20 @@ export default class BasicCalc {
 
     calcTMB = () => {
         if (this.gender === 'm') {
-            this.TMB = parseInt(66.5 + (13.7 * this.weight) + (5 * this.height) - (6.8 * this.age));
+            this.TMB = util.toInt(66.5 + (13.7 * this.weight) + (5 * this.height) - (6.8 * this.age));
             return;
         }
-        this.TMB = parseInt(655 + (9.6 * this.weight) + (1.8 * this.height) - (4.7 * this.age));
+        this.TMB = util.toInt(655 + (9.6 * this.weight) + (1.8 * this.height) - (4.7 * this.age));
     }
 
     calcEnergy = () => {
         this.calcTMB();
         if (!this.TMB) return;
-        this.energy = parseInt(this.TMB * this.activity);
+        this.energy = util.toInt(this.TMB * this.activity);
     }
 
     calcBMI = () => {
-        this.BMI = +(this.weight / Math.pow((this.height / 100), 2)).toFixed(2);
+        this.BMI = util.toDouble(this.weight / Math.pow((this.height / 100), 2));
     }
 
     calcBasicData = () => {

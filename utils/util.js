@@ -11,5 +11,11 @@ export const util = {
     },
     checkLocalStorage(item) {
         return JSON.parse(localStorage.getItem(item));
+    },
+    toDouble(num) {
+        return +parseFloat(num).toFixed(2);
+    },
+    toInt(num) {
+        return +parseInt(num);
     }
 }

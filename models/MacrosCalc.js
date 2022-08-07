@@ -1,3 +1,5 @@
+import { util } from "../utils/util.js";
+
 export default class MacrosCalc {
 
     statusCompleted = false;
@@ -84,36 +86,36 @@ export default class MacrosCalc {
     }
 
     calcProt = () => {
-        this.protein = +(this.client.weight * this.proteinGBW).toFixed(2);
+        this.protein =  util.toInt(this.client.weight * this.proteinGBW);
     }
 
     //CALC BY PROTOCOL
     calcLowCarb = () => {
         if (this.protocol !== 'low carb') return;
         this.ch = this.lowCarb;
-        this.fat = +(this.calcEnergyDif(this.protein * this.protE, this.ch * this.chE, this.fatE)).toFixed(2);
+        this.fat = util.toInt(this.calcEnergyDif(this.protein * this.protE, this.ch * this.chE, this.fatE))
     }
 
     calcKeto = () => {
         if (this.protocol !== 'keto') return;
         this.ch = this.keto;
-        this.fat = +(this.calcEnergyDif(this.protein * this.protE, this.ch * this.chE, this.fatE)).toFixed(2);
+        this.fat =  util.toInt(this.calcEnergyDif(this.protein * this.protE, this.ch * this.chE, this.fatE));
     }
 
     calcHC = () => {
         if (this.protocol !== 'high carb') return;
-        this.fat = +(this.client.weight * this.minFatGBW).toFixed(2);
-        this.ch = +(this.calcEnergyDif(this.protein * this.protE, this.fat * this.fatE, this.chE)).toFixed(2);
+        this.fat =  util.toInt(this.client.weight * this.minFatGBW);
+        this.ch =  util.toInt(this.calcEnergyDif(this.protein * this.protE, this.fat * this.fatE, this.chE));
     }
 
     calcAverage = () => {
         if (this.protocol !== 'average') return;
-        this.fat = +(this.client.weight * this.avFatGBW).toFixed(2);
-        this.ch = +(this.calcEnergyDif(this.protein * this.protE, this.fat * this.fatE, this.chE)).toFixed(2);
+        this.fat =  util.toInt(this.client.weight * this.avFatGBW);
+        this.ch =  util.toInt(this.calcEnergyDif(this.protein * this.protE, this.fat * this.fatE, this.chE));
     }
 
     calcKetoIndex = () => {
-        this.ketoI = +(((0, 9 * this.fat) + (0, 46 * this.protein)) / (this.ch + (0, 58 * this.protein) + (0, 1 * this.fat))).toFixed(2);
+        this.ketoI =  util.toDouble(((0, 9 * this.fat) + (0, 46 * this.protein)) / (this.ch + (0, 58 * this.protein) + (0, 1 * this.fat)));
     }
 
     //SETTERS
@@ -131,7 +133,7 @@ export default class MacrosCalc {
             protein: this.protein * this.protE,
             CH: this.ch * this.chE,
             fat: this.fat * this.fatE,
-            total: parseInt(this.protein * this.protE + this.ch * this.chE + this.fat * this.fatE)
+            total: util.toInt(this.protein * this.protE + this.ch * this.chE + this.fat * this.fatE)
         }
     }
 

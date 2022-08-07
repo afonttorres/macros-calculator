@@ -1,4 +1,4 @@
-import { util } from "../util.js";
+import  {util}  from "../utils/util.js";
 import BasicCalc from "./BasicCalc.js";
 import ClientForm from "./ClientForm.js";
 import Equivalences from "./EquivalencesCalc.js";
