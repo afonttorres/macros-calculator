@@ -7,8 +7,8 @@ class App {
         this.ui = new UI;
     }
 
-    render(){
-        this.ui.renderClientForm();
+    render() {
+        localStorage.getItem('basic-data') ? this.ui.renderBasicData() : this.ui.renderClientForm();
     }
 }
 

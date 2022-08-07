@@ -54,31 +54,15 @@ body {
     border-radius: 0.75rem;
 }
 
-.font {
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.title {
-    text-transform: uppercase;
-    font-size: x-large;
-    font-weight: bolder;
-    color: white;
-    text-shadow: 0px 1px 1px #DD2476;
-}
-
-::placeholder {
-    text-transform: capitalize;
-    color: white;
-    padding-left: 3px;
-}
-
-::selection {
-    background-color: #DD2476;
-    color: white;
-}
-
 .items-cont {
     height: 70%;
+    width: 100%;
+}
+
+.btn-row{
+    height: 15%;
+    align-items: flex-start;
+    gap: 10%;
     width: 100%;
 }
 
@@ -93,8 +77,33 @@ body {
     gap: 10%;
 }
 
+
+::placeholder {
+    text-transform: capitalize;
+    color: white;
+    padding-left: 3px;
+}
+
+::selection {
+    background-color: #DD2476;
+    color: white;
+}
+
+.font {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.title {
+    text-transform: uppercase;
+    font-size: x-large;
+    font-weight: bolder;
+    color: white;
+    text-shadow: 0px 1px 1px #DD2476;
+}
+
 .form-control input,
-.form-control select {
+.form-control select,
+.data-output {
     height: 4vh;
     width: 125px;
     background-color: transparent;
@@ -104,6 +113,7 @@ body {
     color: white;
     outline: none;
     box-shadow: 0px 1px 3px black;
+    text-transform: capitalize;
 }
 
 .form-control select option {
@@ -113,6 +123,7 @@ body {
     cursor: pointer;
 }
 
+
 .form-control label {
     color: white;
     text-transform: capitalize;
@@ -121,11 +132,9 @@ body {
     padding-left: 15px;
 }
 
-input:focus+label {
-    color: tomato;
-}
-
 button {
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
     box-shadow: none;
     outline: none;
     cursor: pointer;
@@ -143,4 +152,15 @@ button {
 
 button:hover {
     background-position: right center;
+}
+
+.data-output{
+    line-height: 4vh;
+    width: 200px;
+    text-transform: none;
+}
+
+.data-label{
+    font-weight: bolder;
+    text-transform: capitalize;
 }

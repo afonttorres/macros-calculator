@@ -18,7 +18,7 @@ export default class BasicCalc {
     }
 
     calcTMB = () => {
-        if (this.gender === 'male') {
+        if (this.gender === 'm') {
             this.TMB = parseInt(66.5 + (13.7 * this.weight) + (5 * this.height) - (6.8 * this.age));
             return;
         }
@@ -39,5 +39,17 @@ export default class BasicCalc {
         this.calcTMB();
         this.calcEnergy();
         this.calcBMI();
+        this.saveBasicData();
+    }
+
+    saveBasicData = () =>{
+        if(!this.BMI || !this.TMB || !this.energy) return;
+        const data = {
+            BMI: this.BMI,
+            TMB: this.TMB,
+            energy: this.energy
+        }
+
+        localStorage.setItem('basic-data', JSON.stringify(data));
     }
 }

@@ -6,8 +6,8 @@ export default class ClientForm {
     activity;
     fields = ['age', 'weight', 'height', 'gender', 'activity'];
     optionals = {
-        activity: [1.2, 1.375, 1.55, 1.9],
-        gender: ['female', 'male']
+        activity: [{ 'sedentary': 1.2 }, { 'ligth': 1.375 }, { 'moderate': 1.55 }, { 'very active': 1.9 }],
+        gender: [{ 'female': 'f' }, { 'male': 'm' }]
     }
 
     constructor() { }
@@ -53,11 +53,11 @@ export default class ClientForm {
 
     saveData = () => {
         let client = {
-            age: this.age,
-            weight: this.weight,
-            height: this.height,
+            age: +this.age,
+            weight: +this.weight,
+            height: +this.height,
             gender: this.gender,
-            activity: this.activity
+            activity: +this.activity
         }
 
         localStorage.setItem('client', JSON.stringify(client))
