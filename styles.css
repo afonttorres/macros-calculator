@@ -38,8 +38,8 @@ body {
 
 
 .container {
-    height: 85%;
-    width: 85%;
+    height: 85vh;
+    width: 85vw;
     border-radius: 0.75rem;
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 40%);
@@ -51,8 +51,8 @@ body {
     background-color: rgba(0, 0, 0, .4);
     background-color: rgba(255, 255, 255, 50%);
     display: block;
-    height: 85%;
-    width: 85%;
+    height: 85vh;
+    width: 85vw;
     z-index: 1;
     position: absolute;
     border-radius: 0.75rem;
