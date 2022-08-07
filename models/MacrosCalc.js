@@ -6,6 +6,7 @@ export default class MacrosCalc {
     protein;
     fat;
     ch;
+    ketoI;
 
     //INPUTS
     energy;
@@ -78,7 +79,7 @@ export default class MacrosCalc {
         return (this.energy - (macroE1 + macroE2)) / expectedMacroE;
     }
 
-    calcEnergy = () =>{
+    calcEnergy = () => {
         this.energy = this.energy * this.energyRatio;
     }
 
@@ -111,12 +112,18 @@ export default class MacrosCalc {
         this.ch = +(this.calcEnergyDif(this.protein * this.protE, this.fat * this.fatE, this.chE)).toFixed(2);
     }
 
+    calcKetoIndex = () => {
+        console.log('hi')
+        this.ketoI = +(((0, 9 * this.fat) + (0, 46 * this.protein)) / (this.ch + (0, 58 * this.protein) + (0, 1 * this.fat))).toFixed(2);
+    }
+
     //SETTERS
     setMacrosComputation = () => {
         this.macrosComp = {
             protein: this.protein,
             fat: this.fat,
-            ch: this.ch
+            ch: this.ch,
+            "keto index": this.ketoI
         }
     }
 
@@ -149,6 +156,8 @@ export default class MacrosCalc {
         this.calcKeto();
         this.calcHC();
         this.calcAverage();
+
+        this.calcKetoIndex();
 
         if (!this.checkIfCompleted()) return;
         this.statusCompleted = true;
