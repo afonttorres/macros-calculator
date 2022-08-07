@@ -33,6 +33,7 @@ body {
     top: 0;
     left: 0;
     background-color: darkseagreen;
+    justify-content: flex-start;
 }
 
 
@@ -42,6 +43,7 @@ body {
     border-radius: 0.75rem;
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 40%);
+    position: relative;
 }
 
 .bg {
@@ -54,6 +56,10 @@ body {
     z-index: 1;
     position: absolute;
     border-radius: 0.75rem;
+}
+
+.bg, .container{
+    top: 2.5%;
 }
 
 .items-cont {
