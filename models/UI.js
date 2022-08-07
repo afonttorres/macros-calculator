@@ -84,7 +84,7 @@ export default class UI {
 
         localStorage.clear();
         this.container.innerHTML = '';
-        this.printCont('macros calculator', 'row');
+        this.printCont('macros calculator', 'col');
         this.printForm(this.clientForm.fields, this.clientForm.optionals, (e) => this.clientForm.catchData(e, this.renderBasicData));
     }
 
@@ -97,16 +97,12 @@ export default class UI {
             document.querySelector('.items-cont').innerHTML += display;
         })
 
-        // const buttonsRow = document.createElement('div')
-        // buttonsRow.classList = 'buttonsRow row font';
-
         Object.keys(callbacks).forEach(b => {
             const button = document.createElement('button');
             button.innerText = callbacks[b].content.toUpperCase();
             button.onclick = callbacks[b].action;
             document.querySelector('.btn-row').insertAdjacentElement('beforeend', button);
         })
-        // document.querySelector('.items-cont').insertAdjacentElement('beforeend', buttonsRow);
 
     }
 
