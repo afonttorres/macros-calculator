@@ -17,5 +17,13 @@ export const util = {
     },
     toInt(num) {
         return +parseInt(num);
+    },
+    round(num) {
+        let decimals = (Math.round(num * 10) / 10).toString().split('.')[1];
+        if (!decimals || decimals[decimals.length - 1] < 3 || decimals[decimals.length - 1] > 7) {
+            return Math.round(num);
+        }
+
+        return +`${Math.floor(num)}.5`
     }
 }

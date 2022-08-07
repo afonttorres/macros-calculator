@@ -24,8 +24,8 @@ export default class UI {
     printCont = (titleText, flex) => {
 
         this.container.classList = `container col`;
-        this.container.setAttribute('style', `height :${window.innerHeight * .85}px` );
-        document.querySelector('.bg').setAttribute('style', `height :${window.innerHeight * .85}px` );
+        this.container.setAttribute('style', `height :${window.innerHeight * .85}px`);
+        document.querySelector('.bg').setAttribute('style', `height :${window.innerHeight * .85}px`);
 
         let html = `
             <p class="title font">${titleText}</p>
@@ -119,7 +119,7 @@ export default class UI {
 
     renderBasicData = () => {
         let buttonCallbacks = {
-            back_button: { action: () => this.renderClientForm(), content: 'back' },
+            back_button: { action: () => { localStorage.removeItem('basic-data'); this.renderClientForm() }, content: 'back' },
             macros_button: { action: () => this.renderMacrosForm(), content: 'set macros', class: 'white-btn' }
         }
 
@@ -170,7 +170,7 @@ export default class UI {
 
 
         let buttonCallbacks = {
-            back_button: { action: () => this.renderMacrosForm(), content: 'back' },
+            back_button: { action: () => { localStorage.removeItem('macros'); this.renderMacrosForm() }, content: 'back' },
             eq_button: { action: () => this.renderEquivalences(), content: 'equivalences', class: 'white-btn' }
         }
 
@@ -202,7 +202,7 @@ export default class UI {
         this.equivalencesCalc.calcEquivalences();
 
         let buttonCallbacks = {
-            back_button: { action: () => this.renderMacrosData(), content: 'back' },
+            back_button: { action: () => {localStorage.removeItem('equivalences'); this.renderMacrosData()}, content: 'back' },
             intakes_button: { action: () => this.renderIntakesFrom(), content: 'set intakes', class: 'white-btn' }
         }
 
