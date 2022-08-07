@@ -81,7 +81,6 @@ export default class UI {
     }
 
     renderClientForm = () => {
-
         localStorage.clear();
         this.container.innerHTML = '';
         this.printCont('macros calculator', 'col');
@@ -89,7 +88,6 @@ export default class UI {
     }
 
     printData(data, callbacks) {
-
         Object.keys(data).forEach(key => {
             const display = `
                 <p class="data-output font"><span class="data-label">${key}:</span> ${data[key]}</p>
@@ -100,6 +98,7 @@ export default class UI {
         Object.keys(callbacks).forEach(b => {
             const button = document.createElement('button');
             button.innerText = callbacks[b].content.toUpperCase();
+            button.classList = callbacks[b].class;
             button.onclick = callbacks[b].action;
             document.querySelector('.btn-row').insertAdjacentElement('beforeend', button);
         })
@@ -111,17 +110,15 @@ export default class UI {
     }
 
     createBasicDataDisplay = (data, callbacks) => {
-
         this.container.innerHTML = '';
         this.printCont('your data', 'col');
         this.printData(util.addUnitsToObj(data, 'kcal'), callbacks);
     }
 
     renderBasicData = () => {
-
         let buttonCallbacks = {
             back_button: { action: () => this.renderClientForm(), content: 'back' },
-            macros_button: { action: () => this.renderMacrosForm(), content: 'set macros' }
+            macros_button: { action: () => this.renderMacrosForm(), content: 'set macros', class: 'white-btn' }
         }
 
         if (this.checkLocalStorage()) {
@@ -143,7 +140,6 @@ export default class UI {
     }
 
     renderMacrosForm = () => {
-
         this.container.innerHTML = '';
         this.printCont('plan your macros', 'col');
         let energy = this.basicCalc ? this.basicCalc.energy : this.checkLocalStorage().energy;
@@ -162,10 +158,9 @@ export default class UI {
     }
 
     renderMacrosData = () => {
-
         let buttonCallbacks = {
             back_button: { action: () => this.renderMacrosForm(), content: 'back' },
-            eq_button: { action: () => this.renderEquivalences(), content: 'equivalences' }
+            eq_button: { action: () => this.renderEquivalences(), content: 'equivalences', class: 'white-btn' }
         }
 
         this.container.innerHTML = '';
