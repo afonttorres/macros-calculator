@@ -1,4 +1,4 @@
-import  {util}  from "../utils/util.js";
+import { util } from "../utils/util.js";
 import BasicCalc from "./BasicCalc.js";
 import ClientForm from "./ClientForm.js";
 import Equivalences from "./EquivalencesCalc.js";
@@ -12,6 +12,7 @@ export default class UI {
     equivalencesCalc;
 
     container = document.querySelector('.container');
+
     constructor() {
         this.clientForm = new ClientForm;
     }
@@ -151,21 +152,31 @@ export default class UI {
             :
             client = JSON.parse(localStorage.getItem('client'));
 
-        this.macrosCalc = new MacrosCalc(energy, client);
+        this.macrosCalc = new MacrosCalc();
+        this.macrosCalc.setData(energy, client);
         this.printForm(Object.keys(this.macrosCalc.optionals), this.macrosCalc.optionals, (e) => this.macrosCalc.catchData(e, this.renderMacrosData))
     }
 
     renderMacrosData = () => {
+
+        let macros;
+
+        if (this.getData('macros')) {
+            macros = this.getData('macros');
+        }
+
+
         let buttonCallbacks = {
             back_button: { action: () => this.renderMacrosForm(), content: 'back' },
             eq_button: { action: () => this.renderEquivalences(), content: 'equivalences', class: 'white-btn' }
         }
 
+
         this.container.innerHTML = '';
         this.printCont('your macros', 'col');
+        this.printData(util.addUnitsToObj(macros ? macros : this.macrosCalc.macrosComp, 'g'), {});
 
-        this.printData(util.addUnitsToObj(this.macrosCalc.macrosComp, 'g'), {});
-        this.printData(util.addUnitsToObj(this.macrosCalc.kcalComp, 'kcal'), buttonCallbacks);
+        this.printData(util.addUnitsToObj(macros ? new MacrosCalc().setKcalComputation(macros.protein, macros.CH, macros.fat) : this.macrosCalc.kcalComp, 'kcal'), buttonCallbacks);
     }
 
     getData = (item) => {
@@ -180,14 +191,12 @@ export default class UI {
 
         let equivalences;
 
-        // if (this.getData('equivalences')) {
-        //     equivalences = this.getData('equivalences');
-        //     return;
-        // }
+        if (this.getData('equivalences')) {
+            equivalences = this.getData('equivalences');
+        }
 
         this.equivalencesCalc = new Equivalences(protein, CH, fat);
         this.equivalencesCalc.calcEquivalences();
-        equivalences = this.equivalencesCalc.printableEq;
 
         let buttonCallbacks = {
             back_button: { action: () => this.renderMacrosData(), content: 'back' },
@@ -196,7 +205,7 @@ export default class UI {
 
         this.container.innerHTML = '';
         this.printCont('your equivalences', 'col');
-        this.printData(util.addUnitsToObj(equivalences, ''), buttonCallbacks)
+        this.printData(util.addUnitsToObj(equivalences ? equivalences : this.equivalencesCalc.printableEq, ''), buttonCallbacks)
 
     }
 
