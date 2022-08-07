@@ -160,11 +160,10 @@ button {
     color: white;
     position: relative;
     top: 10%;
-    box-shadow: 0px 1px 3px black;
+    box-shadow: 0px 0px 100px black;
     font-weight: 800;
     font-size: medium;
     padding: 18px 32px;
-
 }
 
 button:hover {
