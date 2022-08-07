@@ -108,7 +108,8 @@ body {
     font-weight: bolder;
     color: rgb(205 92 92);
     text-shadow: 4px 3px 2px rgb(205 92 92 / 30%);
-
+    width: 100%;
+    text-align: center;
 }
 
 .input,
