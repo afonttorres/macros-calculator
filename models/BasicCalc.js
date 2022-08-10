@@ -11,12 +11,14 @@ export default class BasicCalc {
     TMB;
     energy;
 
+    basicData;
+
     constructor(age, weight, height, gender, activity) {
-        this.age = parseInt(age);
-        this.weight = parseInt(weight);
-        this.height = parseInt(height);
+        this.age = +age;
+        this.weight = +weight;
+        this.height = +height;
         this.gender = gender;
-        this.activity = parseFloat(activity);
+        this.activity = util.toDouble(activity);
     }
 
     calcTMB = () => {
@@ -41,17 +43,20 @@ export default class BasicCalc {
         this.calcTMB();
         this.calcEnergy();
         this.calcBMI();
+        this.setBasicData();
         this.saveBasicData();
     }
 
-    saveBasicData = () =>{
-        if(!this.BMI || !this.TMB || !this.energy) return;
-        const data = {
+    setBasicData = () => {
+        if (!this.BMI || !this.TMB || !this.energy) return;
+        this.basicData = {
             BMI: this.BMI,
             TMB: this.TMB,
             energy: this.energy
         }
+    }
 
-        localStorage.setItem('basic-data', JSON.stringify(data));
+    saveBasicData = () => {
+        localStorage.setItem('basic-data', JSON.stringify(this.basicData));
     }
 }

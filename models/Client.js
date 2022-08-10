@@ -1,10 +1,14 @@
-export default class ClientForm {
+export default class Client {
     age;
     weight;
     height;
     gender;
     activity;
+
+    client;
+
     fields = [{ 'age': '18' }, { 'weight': '55 (in kg)' }, { 'height': '160 (in cm)' }, 'gender', 'activity'];
+
     optionals = {
         activity: [{ 'sedentary': 1.2 }, { 'light': 1.375 }, { 'moderate': 1.55 }, { 'very active': 1.9 }],
         gender: [{ 'female': 'f' }, { 'male': 'm' }]
@@ -35,6 +39,7 @@ export default class ClientForm {
                     this.activity = i.value;
             }
         })
+        this.setClient();
         this.saveData();
         this.resetInputs();
         callback();
@@ -51,16 +56,18 @@ export default class ClientForm {
         return flag;
     }
 
-    saveData = () => {
-        let client = {
+    setClient = () => {
+        this.client = {
             age: +this.age,
             weight: +this.weight,
             height: +this.height,
             gender: this.gender,
             activity: +this.activity
         }
+    }
 
-        localStorage.setItem('client', JSON.stringify(client))
+    saveData = () => {
+        localStorage.setItem('client', JSON.stringify(this.client))
     }
 
     resetInputs = () => {

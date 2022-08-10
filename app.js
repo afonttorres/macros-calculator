@@ -29,7 +29,7 @@ class App {
             return;
         }
         
-        this.ui.renderClientForm();
+        this.ui.renderClient();
         
 
 
