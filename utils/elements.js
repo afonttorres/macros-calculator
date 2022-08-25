@@ -53,7 +53,7 @@ export const elements = {
             </div>`
         )
     },
-    createDisplayData(data, callbacks){
+    createDisplayData(data, callbacks) {
         Object.keys(data).forEach(key => {
             const display = `
                 <p class="data-output font"><span class="data-label">${key}:</span> ${data[key]}</p>
@@ -69,8 +69,11 @@ export const elements = {
             document.querySelector('.btn-row').insertAdjacentElement('beforeend', button);
         })
     },
-    resetContainer(){
+    resetContainer() {
         document.querySelector('.container').innerHTML = '';
+    },
+    resetBtnRow(){
+        document.querySelector('.btn-row').innerHTML = '';
     }
 
 }

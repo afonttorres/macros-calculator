@@ -1,11 +1,7 @@
 import { util } from "../utils/util.js";
 
-export default class BasicCalc {
-    age;
-    weight;
-    height;
-    gender;
-    activity;
+export default class EnergyCalc {
+    client;
 
     BMI;
     TMB;
@@ -13,30 +9,26 @@ export default class BasicCalc {
 
     basicData;
 
-    constructor(age, weight, height, gender, activity) {
-        this.age = +age;
-        this.weight = +weight;
-        this.height = +height;
-        this.gender = gender;
-        this.activity = util.toDouble(activity);
+    constructor(client) {
+        this.client = client;
     }
 
     calcTMB = () => {
-        if (this.gender === 'm') {
-            this.TMB = util.toInt(66.5 + (13.7 * this.weight) + (5 * this.height) - (6.8 * this.age));
+        if (this.client.gender === 'm') {
+            this.TMB = util.toInt(66.5 + (13.7 * this.client.weight) + (5 * this.client.height) - (6.8 * this.client.age));
             return;
         }
-        this.TMB = util.toInt(655 + (9.6 * this.weight) + (1.8 * this.height) - (4.7 * this.age));
+        this.TMB = util.toInt(655 + (9.6 * this.client.weight) + (1.8 * this.client.height) - (4.7 * this.client.age));
     }
 
     calcEnergy = () => {
         this.calcTMB();
         if (!this.TMB) return;
-        this.energy = util.toInt(this.TMB * this.activity);
+        this.energy = util.toInt(this.TMB * util.toDouble(this.client.activity));
     }
 
     calcBMI = () => {
-        this.BMI = util.toDouble(this.weight / Math.pow((this.height / 100), 2));
+        this.BMI = util.toDouble(this.client.weight / Math.pow((this.client.height / 100), 2));
     }
 
     calcBasicData = () => {

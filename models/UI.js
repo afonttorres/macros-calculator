@@ -1,16 +1,18 @@
 import { elements } from "../utils/elements.js";
 import { util } from "../utils/util.js";
-import BasicCalc from "./BasicCalc.js";
+import EnergyCalc from "./EnergyCalc.js";
 import Client from "./Client.js";
 import Equivalences from "./EquivalencesCalc.js";
 import MacrosCalc from "./MacrosCalc.js";
+import IntakesCalc from "./IntakesCalc.js";
 
 export default class UI {
 
     client;
-    basicCalc;
+    energyCalc;
     macrosCalc;
     equivalencesCalc;
+    intakesCalc;
 
     container = document.querySelector('.container');
 
@@ -36,24 +38,24 @@ export default class UI {
     }
 
     renderBasicData = () => {
-        let { age, weight, height, gender, activity } =  this.getData('client') ? this.getData('client') : this.client.client;
+        let client = this.getData('client') ? this.getData('client') : this.client.client;
 
         let buttonCallbacks = {
             back_button: { action: () => { localStorage.removeItem('basic-data'); this.renderClient() }, content: 'back' },
             macros_button: { action: () => this.renderMacrosForm(), content: 'set macros', class: 'white-btn' }
         }
 
-        this.basicCalc = new BasicCalc(age, weight, height, gender, activity);
-        this.basicCalc.calcBasicData();
+        this.energyCalc = new EnergyCalc(client);
+        this.energyCalc.calcBasicData();
 
         elements.setContainerContent('your energy data', 'col');
-        elements.createDisplayData(util.addUnitsToObj(this.getData('basic-data') ? this.getData('basic-data') : this.basicCalc.basicData, 'kcal'), buttonCallbacks);
+        elements.createDisplayData(util.addUnitsToObj(this.getData('basic-data') ? this.getData('basic-data') : this.energyCalc.basicData, 'kcal'), buttonCallbacks);
 
     }
 
     renderMacrosForm = () => {
-        let energy = this.getData('basic-data') ? this.getData('basic-data').energy : this.basicCalc.energy;
-        let client = this.getData('client') ? this.getData('client') : this.basicCalc.client;
+        let energy = this.getData('basic-data') ? this.getData('basic-data').energy : this.energyCalc.energy;
+        let client = this.getData('client') ? this.getData('client') : this.energyCalc.client;
 
         elements.setContainerContent('plan your macros', 'col');
 
@@ -93,7 +95,14 @@ export default class UI {
     }
 
     renderIntakesFrom = () => {
-        console.error('Not implemented yet');
+        let equivalences = this.getData('equivalences') ? this.getData('equivalences') : this.equivalencesCalc.equivalences;
+        Object.keys(equivalences).forEach(e => equivalences[e] = +equivalences[e].split(' ')[0]);
+        this.intakesCalc = new IntakesCalc(equivalences);
+        elements.createForm(Object.keys(this.intakesCalc.optionals), this.intakesCalc.optionals, Object.keys(this.intakesCalc.optionals).length);
+        elements.resetBtnRow();
+        document.querySelector('.input').onchange = (e) => this.intakesCalc.catchData(e.target.value);
+        if (!this.intakesCalc.intakes) return;
+        elements.createDisplayData(this.intakesCalc.intakes, {});
     }
 
 }
