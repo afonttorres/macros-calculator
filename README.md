@@ -59,10 +59,10 @@ In plain language, I would like to translate the macros equivalences into food i
 #### 2. Run the app by opening it in your favourite server or browser.
 
 ## Authors
-+ Agnès Font Torres
++ [@afonttorres](https://github.com/afonttorres)
 
 #### Contact me:
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/agnes-font-torres/)
-[e-mail me](mailto:afonttorres@gmail.com)
-[@afonttorres](https://github.com/afonttorres)
+
+[Email](mailto:afonttorres@gmail.com)
